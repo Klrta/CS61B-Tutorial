@@ -94,7 +94,7 @@ public class NBody {
     }
 
     //获取x方向上 每个行星净力的数组
-    public static double[] calcNetXForces(Planet[] planets){
+    private static double[] calcNetXForces(Planet[] planets){
         double[] XForces = new double[planets.length];
         for (int i = 0; i < planets.length; i++) {
             XForces[i] = planets[i].calcNetForceExertedByX(planets);
@@ -102,7 +102,7 @@ public class NBody {
         return XForces;
     }
     //获取y方向上 每个行星净力的数组
-    public static double[] calcNetYForces(Planet[] planets){
+    private static double[] calcNetYForces(Planet[] planets){
         double[] YForces = new double[planets.length];
         for (int i = 0; i < planets.length; i++) {
             YForces[i] = planets[i].calcNetForceExertedByY(planets);
