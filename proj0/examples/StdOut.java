@@ -5,11 +5,13 @@
  *  Writes data of various types to standard output.
  *
  *************************************************************************/
-
+package examples;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+
+
 
 /**
  *  <i>Standard output</i>. This class provides methods for writing strings

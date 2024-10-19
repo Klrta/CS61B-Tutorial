@@ -44,7 +44,7 @@
  *      strength random number generator in Java.
  *
  ******************************************************************************/
-
+package examples;
 import java.util.Random;
 
 /**

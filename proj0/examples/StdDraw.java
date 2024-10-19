@@ -21,6 +21,7 @@
  *       images and strings
  *
  ******************************************************************************/
+package examples;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
