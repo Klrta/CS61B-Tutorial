@@ -1,94 +1,113 @@
-import edu.princeton.cs.algs4.In;
+public class LinkedListDeque<T>{
+    private static class Node<T>{
+        T value;
+        Node<T> next;
+        Node<T> prev;
 
-import java.util.TreeMap;
+        Node(){}
 
-public class LinkedListDeque<T> {
-
-
-    public class IntNode{
-        public T item;
-        public IntNode prev;
-        public IntNode next;
-        public IntNode(T i,IntNode p,IntNode n){
-            item = i;
-            prev = p;
-            next = n;
+        Node(T value){
+            this.value = value;
         }
     }
 
+    private Node<T> sentinel;
     private int size;
-    private IntNode sentinel;
 
     public LinkedListDeque(){
-        sentinel = new IntNode(null,null,null);
+        sentinel = new Node<T>();
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
         size = 0;
     }
-    //初始化双端链表
-    public LinkedListDeque(T item){
-        sentinel = new IntNode(null,null,null);
-        IntNode node = new IntNode(item,sentinel,sentinel);
+
+    public void addFirst(T value){
+        Node<T> node = new Node<T>(value);
+        Node<T> next = sentinel.next;
+
+        node.next = next;
+        next.prev = node;
         sentinel.next = node;
+        node.prev = sentinel;
+
+        size++;
+    }
+
+    public void addLast(T value){
+        Node<T> node = new Node<T>(value);
+        Node<T> prev = sentinel.prev;
+
+        node.prev = prev;
+        prev.next = node;
         sentinel.prev = node;
-        size = 1;
+        node.next = sentinel;
+
+        size++;
     }
 
-    public void addFirst(T item){
-        IntNode node = new IntNode(item,sentinel,sentinel.next);
-        sentinel.next = node;
-        sentinel.prev.prev = node;
-        size += 1;
+    public boolean isEmpty(){
+        return size == 0;
     }
 
-    public void addLast(T item){
-        IntNode node = new IntNode(item, sentinel.prev, sentinel);
-        sentinel.prev.next = node;  // 更新原最后一个节点的 next
-        sentinel.prev = node;  // 将新节点设为最后一个节点
-        size += 1;  // 增加 size
-    }
-
-    public T getLast(){
-        return sentinel.prev.item;
-    }
-
-    public void removeLast(){
-        if (isEmpty()) {
-            return;  // 如果链表为空，什么也不做
-        }
-        sentinel.prev.prev.next = sentinel;
-        sentinel.prev = sentinel.prev.prev;
-        size -= 1;
-    }
-
-    public void removeFirst() {
-        if (isEmpty()){
-            return;
-        }
-        sentinel.next = sentinel.next.next;
-        sentinel.next.prev = sentinel;
-        size -= 1;
-    }
     public int size(){
         return size;
     }
 
-    public boolean isEmpty() {
-        if (size == 0){
-            return true;
-        }else {
-            return false;
+    public void printDeque(){
+        for(Node<T> p = sentinel.next;p!=sentinel;p=p.next){
+            System.out.println(p.value + " ");
         }
     }
 
-    public void printDeque() {
-        IntNode current = sentinel.next;
-        while (current != sentinel){
-            System.out.print(current.item + " -> ");
-            current = current.next;
-        }
-        System.out.println("null");
+    public T removeFirst(){
+        return remove(sentinel.next);
     }
 
+    public T removeLast(){
+        return remove(sentinel.prev);
+    }
 
+    public T get(int index){
+        if(index > size){
+            return null;
+        }
+        int i = 0;
+        Node<T> n = sentinel.next;
+
+        while(true){
+            if( i == index || n == sentinel){
+                break;
+            }
+            n = n.next;
+            i++;
+        }
+
+        return n.value;
+    }
+
+    public T getRecursive(int index){
+        return getRecursive(index,sentinel.next);
+    }
+
+    private T remove(Node<T> node){
+        if (node == sentinel){
+            return null;
+        }
+
+        Node<T> next = node.next;
+        Node<T> prev = node.prev;
+
+        prev.next = next;
+        next.prev = prev;
+        size--;
+
+        return node.value;
+    }
+
+    private T getRecursive(int distance,Node<T> n){
+        if(distance == 0 || n == sentinel){
+            return n.value;
+        }
+        return getRecursive(distance - 1,n.next);
+    }
 }
