@@ -15,14 +15,14 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    // 拷贝构造函数
-    public ArrayDeque(ArrayDeque<T> other) {
-        arr = (T[]) new Object[other.arr.length];
-        System.arraycopy(other.arr, 0, arr, 0, other.size);
-        start = other.start;
-        end = other.end;
-        size = other.size;
-    }
+//    // 拷贝构造函数
+//    public ArrayDeque(ArrayDeque<T> other) {
+//        arr = (T[]) new Object[other.arr.length];
+//        System.arraycopy(other.arr, 0, arr, 0, other.size);
+//        start = other.start;
+//        end = other.end;
+//        size = other.size;
+//    }
 
     public void addLast(T item) {
         if (size == arr.length) {
