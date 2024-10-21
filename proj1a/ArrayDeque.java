@@ -8,21 +8,24 @@ public class ArrayDeque<T> {
     private int end;
     private int size;
 
-
-    public ArrayDeque(){
-        arr = (T[]) new Object(INITIAL_LENGTH);
+    public ArrayDeque() {
+        arr = (T[]) new Object[INITIAL_LENGTH];  // 修正类型转换错误
         start = 0;
         end = arr.length - 1;
         size = 0;
     }
 
-    public ArrayDeque(ArrayDeque other){;
-        System.arraycopy(items,0,other,0,size);
-        items = other;
+    // 拷贝构造函数
+    public ArrayDeque(ArrayDeque<T> other) {
+        arr = (T[]) new Object[other.arr.length];
+        System.arraycopy(other.arr, 0, arr, 0, other.size);
+        start = other.start;
+        end = other.end;
+        size = other.size;
     }
 
-    public void addLast(T item){
-        if (size == arr.length){
+    public void addLast(T item) {
+        if (size == arr.length) {
             changeCapacity(arr.length * GROWTH_FACTOR);
         }
         end = (end + 1) % arr.length;
@@ -30,17 +33,17 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    public void addFirst(T item){
-        if (size == arr.length){
+    public void addFirst(T item) {
+        if (size == arr.length) {
             changeCapacity(arr.length * GROWTH_FACTOR);
         }
         start = (start - 1 + arr.length) % arr.length;
         arr[start] = item;
-        size++;
+        size++;  // 忘记了size++
     }
 
     private void changeCapacity(int length) {
-        T[] resized = (T[]) new Object(length);
+        T[] resized = (T[]) new Object[length];
         for (int i = 0; i < size; i++) {
             int src = (start + i) % arr.length;
             int dest = i;
@@ -51,26 +54,27 @@ public class ArrayDeque<T> {
         end = size - 1;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         for (int i = 0; i < size; i++) {
             int index = (start + i) % arr.length;
-            System.out.println(arr[index] + " ");
+            System.out.print(arr[index] + " ");
         }
+        System.out.println();
     }
 
-    public T removeFirst(){
-        if(size <= 0){
+    public T removeFirst() {
+        if (size <= 0) {
             return null;
         }
-        if(size < arr.length /DOWNSIZE_FACTOR && size > INITIAL_LENGTH){
+        if (size < arr.length / DOWNSIZE_FACTOR && size > INITIAL_LENGTH) {
             changeCapacity(arr.length / GROWTH_FACTOR);
         }
         T item = arr[start];
@@ -80,11 +84,11 @@ public class ArrayDeque<T> {
         return item;
     }
 
-    public T removeLast(){
-        if(size <= 0){
+    public T removeLast() {
+        if (size <= 0) {
             return null;
         }
-        if(size < arr.length / DOWNSIZE_FACTOR && size > INITIAL_LENGTH){
+        if (size < arr.length / DOWNSIZE_FACTOR && size > INITIAL_LENGTH) {
             changeCapacity(arr.length / GROWTH_FACTOR);
         }
         T item = arr[end];
@@ -94,12 +98,10 @@ public class ArrayDeque<T> {
         return item;
     }
 
-    public T get(int index){
-        if(index >= arr.length){
+    public T get(int index) {
+        if (index >= size || index < 0) {  // 修正边界检查
             return null;
         }
-        return arr[(start+index)% arr.length];
+        return arr[(start + index) % arr.length];
     }
-
-
 }
