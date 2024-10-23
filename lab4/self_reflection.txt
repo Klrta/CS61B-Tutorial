@@ -33,31 +33,41 @@ LinkedListDeque:
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
 A: 
+一.设置了private static final int变量,分别是初始长度,增长因数,下降因数,在编写初定义这些变量会少很多麻烦
+二.public class ArrayDeque<T> 使用泛型,得以让数据结构接受所有数据类型
+
 
 Q: What's something you felt proud of in your code, if anything?
 
 A:
+画出图后,我把start和end视作两个指针,增删改查的操作只需根据指针和 定义的变量来进行,很方便
+arr = (T[]) new Object[INITIAL_LENGTH];  这个是构造函数里的一步,难想
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
 A:
+暂时没有发现
 
 Q: What did you learn by talking to your partner about writing LinkedListDeque?
 
 A:
+没有同伴
 
 Q: What do you wish you would have known before writing LinkedListDeque, if anything?
 
 A:
+希望明白数据结构在增删改查时是怎么变化的,如果有动画演示会好理解
 
 Q: If you wrote LinkedListDeque again, what would you do differently, if anything?
 
 A:
 
+类之后可以嵌套类,我希望自己要记住,
+可以想象一下,最大的类是框架,其余是补充
 -----
 
 Meta:
 
 Q: Did you like this design review process? Anything we should do differently next time?
 
-A: 
+A: 喜欢
