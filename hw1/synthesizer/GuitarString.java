@@ -51,7 +51,7 @@ public class GuitarString {
         //移除 BoundedQueue 中的前一个双精度数，并将其与 BQ 中的下一个双精度数（提示：使用dequeue()和peek()）乘以能量衰减因子 0.996 求平均值。
         double firstSample = buffer.dequeue();
         double secondSample = buffer.peek();
-        double soundSample = -0.5 * (firstSample + secondSample) / 2 * DECAY;
+        double soundSample = (firstSample + secondSample) / 2 * DECAY;
         buffer.enqueue(soundSample);
     }
 
