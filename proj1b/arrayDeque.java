@@ -1,4 +1,4 @@
-public class ArrayDeque<T> implements Deque<T>{
+public class arrayDeque<T> implements Deque<T>{
     private static final int INITIAL_LENGTH = 4;
     private static final int GROWTH_FACTOR = 2;
     private static final int DOWNSIZE_FACTOR = 4;
@@ -8,7 +8,7 @@ public class ArrayDeque<T> implements Deque<T>{
     private int end;
     private int size;
 
-    public ArrayDeque() {
+    public arrayDeque() {
         arr = (T[]) new Object[INITIAL_LENGTH];  // 修正类型转换错误
         start = 0;
         end = arr.length - 1;

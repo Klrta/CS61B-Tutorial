@@ -1,6 +1,6 @@
 All questions are optional, though try to answer at least 4. The main goal of this file is to get you thinking critically about your own work, but we will also use these self reflections at the end of the semester when we do our internal review of the course.
 
-ArrayDeque:
+arrayDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
@@ -14,15 +14,15 @@ Q: What's something that was particularly inelegant in your code, if anything?
 
 A:
 
-Q: What did you learn by talking to your partner about writing ArrayDeque?
+Q: What did you learn by talking to your partner about writing arrayDeque?
 
 A:
 
-Q: What do you wish you would have known before writing ArrayDeque, if anything?
+Q: What do you wish you would have known before writing arrayDeque, if anything?
 
 A:
 
-Q: If you wrote ArrayDeque again, what would you do differently, if anything?
+Q: If you wrote arrayDeque again, what would you do differently, if anything?
 
 A:
 
@@ -34,7 +34,7 @@ Q: Give an example of at least one idea from the staff solution that would have 
 
 A: 
 一.设置了private static final int变量,分别是初始长度,增长因数,下降因数,在编写初定义这些变量会少很多麻烦
-二.public class ArrayDeque<T> 使用泛型,得以让数据结构接受所有数据类型
+二.public class arrayDeque<T> 使用泛型,得以让数据结构接受所有数据类型
 
 
 Q: What's something you felt proud of in your code, if anything?
